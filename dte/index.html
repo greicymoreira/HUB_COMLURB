@@ -3,141 +3,129 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DTE - Inteligência Operacional | HUB COMLURB</title>
+  <title>DTE - Diretoria Técnica e de Engenharia | HUB COMLURB</title>
   
+  <!-- CSS do HUB -->
   <link rel="stylesheet" href="../assets/css/hub-premium.css">
   
+  <!-- CSS CUSTOMIZADO - Correções de Responsividade -->
   <style>
-    /* RESPONSIVIDADE */
-    .grid2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 16px 0; }
-    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 16px 0; }
-    
-    @media (max-width: 1280px) {
-      .grid2 { grid-template-columns: 1fr; }
-      .grid { grid-template-columns: repeat(2, 1fr); }
-      .kpis { grid-template-columns: repeat(3, 1fr) !important; }
+    /* FORÇA RESPONSIVIDADE NOS GRIDS */
+    .grid2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin: 16px 0;
     }
     
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 16px 0;
+    }
+    
+    /* TABLETS */
+    @media (max-width: 1280px) {
+      .grid2 {
+        grid-template-columns: 1fr;
+      }
+      
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .kpis {
+        grid-template-columns: repeat(3, 1fr) !important;
+      }
+    }
+    
+    /* MOBILE */
     @media (max-width: 768px) {
-      .grid, .grid2 { grid-template-columns: 1fr; }
-      .kpis { grid-template-columns: repeat(2, 1fr) !important; }
-      .navTabs { flex-direction: column; gap: 8px; }
-      .tabBtn { width: 100%; }
-      .filters { grid-template-columns: 1fr !important; }
+      .grid,
+      .grid2 {
+        grid-template-columns: 1fr;
+      }
+      
+      .kpis {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+      
+      .navTabs {
+        flex-direction: column;
+        gap: 8px;
+      }
+      
+      .tabBtn {
+        width: 100%;
+        text-align: center;
+      }
+      
+      .filters {
+        grid-template-columns: 1fr !important;
+      }
     }
     
     @media (max-width: 480px) {
-      .kpis { grid-template-columns: 1fr !important; }
+      .kpis {
+        grid-template-columns: 1fr !important;
+      }
     }
     
-    /* TEXTOS */
-    .kpi .label { font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .kpi .big { font-size: 28px; line-height: 1.1; }
-    .kpi .note { font-size: 10px; line-height: 1.3; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
-    .panel h2 { font-size: 15px; line-height: 1.2; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .panel .hint { font-size: 10px; line-height: 1.3; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    
-    canvas { background: transparent !important; }
-    
-    /* SCORE DE RISCO */
-    .riskScore {
-      background: var(--panel);
-      border: 2px solid var(--border);
-      border-radius: 12px;
-      padding: 20px;
-      text-align: center;
-      margin: 16px 0;
-    }
-    
-    .riskScore .label {
+    /* AJUSTES DE TEXTO NOS CARDS */
+    .kpi .label {
       font-size: 11px;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 8px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     
-    .riskScore .value {
-      font-size: 48px;
-      font-weight: 700;
-      line-height: 1;
-      margin: 8px 0;
+    .kpi .big {
+      font-size: 28px;
+      line-height: 1.1;
     }
     
-    .riskScore .status {
-      font-size: 14px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-top: 8px;
+    .kpi .note {
+      font-size: 10px;
+      line-height: 1.3;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
     }
     
-    .riskScore.critical .value { color: #ef6a5d; }
-    .riskScore.warning .value { color: #e87535; }
-    .riskScore.normal .value { color: #78aaa3; }
-    
-    /* RANKINGS */
-    .ranking {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 16px;
-      margin: 16px 0;
+    /* PAINÉIS */
+    .panel h2 {
+      font-size: 15px;
+      line-height: 1.2;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     
-    .ranking .title {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+    .panel .hint {
+      font-size: 10px;
+      line-height: 1.3;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     
-    .ranking .item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 8px 0;
-      border-bottom: 1px solid var(--border);
+    /* CANVAS SEM FUNDO PRETO */
+    canvas {
+      background: transparent !important;
     }
-    
-    .ranking .item:last-child {
-      border-bottom: none;
-    }
-    
-    .ranking .item .left {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    
-    .ranking .item .icon {
-      font-size: 16px;
-    }
-    
-    .ranking .item .label {
-      font-size: 12px;
-      color: var(--text);
-    }
-    
-    .ranking .item .value {
-      font-size: 14px;
-      font-weight: 600;
-    }
-    
-    .ranking .item.critical .value { color: #ef6a5d; }
-    .ranking .item.warning .value { color: #e87535; }
-    .ranking .item.normal .value { color: #78aaa3; }
   </style>
 </head>
 
 <body>
 <div class="app">
   
+  <!-- HEADER -->
   <div id="header"></div>
   
+  <!-- NAVEGAÇÃO -->
   <div class="navTabs">
     <button class="tabBtn active" data-screen="screenVisao">Visão Geral</button>
     <button class="tabBtn" data-screen="screenFrota">Performance de Frota</button>
@@ -145,6 +133,7 @@
     <button class="tabBtn" data-screen="screenInfra">Infraestrutura</button>
   </div>
   
+  <!-- FILTROS -->
   <section class="filters">
     <div class="field">
       <label>Período</label>
@@ -173,166 +162,290 @@
     <button class="actionBtn" onclick="clearAll()">Limpar</button>
   </section>
   
+  <!-- DRILL DOWN BANNER -->
   <div id="drillBanner"></div>
   
-  <!-- TELA 1 -->
+  <!-- TELA 1 - VISÃO GERAL -->
   <div class="screen active" id="screenVisao">
     <div class="kpis" id="kpisVisao"></div>
     
     <div class="grid2">
-      <div class="ranking" id="rankingCriticos"></div>
-      <div class="ranking" id="rankingEficientes"></div>
-    </div>
-    
-    <div class="grid2">
       <div class="panel">
-        <div class="panelHead"><div><h2>Evolução do Recebimento</h2><div class="hint">Toneladas</div></div></div>
-        <div class="body"><canvas id="chartEvolucao" style="height: 320px"></canvas></div>
+        <div class="panelHead">
+          <div>
+            <h2>Evolução do Recebimento</h2>
+            <div class="hint">Toneladas por mês</div>
+          </div>
+        </div>
+        <div class="body">
+          <canvas id="chartEvolucao" style="height: 320px"></canvas>
+        </div>
       </div>
       
       <div class="panel">
-        <div class="panelHead"><div><h2>Por ETR</h2><div class="hint">Clique para filtrar</div></div></div>
+        <div class="panelHead">
+          <div>
+            <h2>Por ETR</h2>
+            <div class="hint">Clique para filtrar</div>
+          </div>
+        </div>
         <div class="body" id="chartETRs"></div>
       </div>
     </div>
     
     <div class="grid">
       <div class="panel">
-        <div class="panelHead"><div><h2>Tipo de Coleta</h2><div class="hint">Distribuição</div></div></div>
-        <div class="body"><canvas id="chartTipoColeta" style="height: 280px"></canvas></div>
+        <div class="panelHead">
+          <div>
+            <h2>Tipo de Coleta</h2>
+            <div class="hint">Distribuição</div>
+          </div>
+        </div>
+        <div class="body">
+          <canvas id="chartTipoColeta" style="height: 280px"></canvas>
+        </div>
       </div>
       
       <div class="panel">
-        <div class="panelHead"><div><h2>Sazonalidade</h2><div class="hint">Padrões</div></div></div>
+        <div class="panelHead">
+          <div>
+            <h2>Sazonalidade</h2>
+            <div class="hint">Padrões mensais</div>
+          </div>
+        </div>
         <div class="body" id="chartSazonalidade"></div>
       </div>
       
       <div class="panel">
-        <div class="panelHead"><div><h2>Bem Verde</h2><div class="hint">Toneladas</div></div></div>
-        <div class="body"><canvas id="chartBemVerde" style="height: 280px"></canvas></div>
+        <div class="panelHead">
+          <div>
+            <h2>Operação Bem Verde</h2>
+            <div class="hint">Toneladas</div>
+          </div>
+        </div>
+        <div class="body">
+          <canvas id="chartBemVerde" style="height: 280px"></canvas>
+        </div>
       </div>
     </div>
   </div>
   
-  <!-- TELA 2 -->
+  <!-- TELA 2 - FROTA -->
   <div class="screen" id="screenFrota">
     <div class="kpis" id="kpisFrota"></div>
     
     <div class="grid2">
-      <div class="ranking" id="rankingFrotaCriticos"></div>
-      <div class="ranking" id="rankingFrotaEficientes"></div>
-    </div>
-    
-    <div class="grid2">
       <div class="panel">
-        <div class="panelHead"><div><h2>Utilização por Tipo</h2><div class="hint">%</div></div></div>
+        <div class="panelHead">
+          <div>
+            <h2>Utilização por Tipo</h2>
+            <div class="hint">Percentual</div>
+          </div>
+        </div>
         <div class="body" id="chartUtilTipos"></div>
       </div>
       
       <div class="panel">
-        <div class="panelHead"><div><h2>Horas Extras</h2><div class="hint">% faturamento</div></div></div>
-        <div class="body"><canvas id="chartHE" style="height: 320px"></canvas></div>
+        <div class="panelHead">
+          <div>
+            <h2>Horas Extras</h2>
+            <div class="hint">% sobre faturamento</div>
+          </div>
+        </div>
+        <div class="body">
+          <canvas id="chartHE" style="height: 320px"></canvas>
+        </div>
       </div>
     </div>
     
     <div class="grid">
       <div class="panel">
-        <div class="panelHead"><div><h2>Gerências Ofensoras</h2><div class="hint">Top 3</div></div></div>
+        <div class="panelHead">
+          <div>
+            <h2>Gerências Ofensoras</h2>
+            <div class="hint">Top 3</div>
+          </div>
+        </div>
         <div class="body" id="chartOfensoras"></div>
       </div>
       
       <div class="panel">
-        <div class="panelHead"><div><h2>Sobrecarga</h2><div class="hint">% >10% PBT</div></div></div>
-        <div class="body"><canvas id="chartSobrecarga" style="height: 280px"></canvas></div>
+        <div class="panelHead">
+          <div>
+            <h2>Sobrecarga</h2>
+            <div class="hint">% >10% PBT</div>
+          </div>
+        </div>
+        <div class="body">
+          <canvas id="chartSobrecarga" style="height: 280px"></canvas>
+        </div>
       </div>
       
       <div class="panel">
-        <div class="panelHead"><div><h2>Tratores</h2><div class="hint">Utilização</div></div></div>
+        <div class="panelHead">
+          <div>
+            <h2>Tratores</h2>
+            <div class="hint">Utilização</div>
+          </div>
+        </div>
         <div class="body" id="chartTratores"></div>
       </div>
     </div>
   </div>
   
-  <!-- TELA 3 -->
+  <!-- TELA 3 - BIOENERGIA -->
   <div class="screen" id="screenBio">
     <div class="kpis" id="kpisBio"></div>
     
     <div class="grid2">
       <div class="panel">
-        <div class="panelHead"><div><h2>Geração de Biogás</h2><div class="hint">mil Nm³</div></div></div>
-        <div class="body"><canvas id="chartBiogas" style="height: 320px"></canvas></div>
+        <div class="panelHead">
+          <div>
+            <h2>Geração de Biogás</h2>
+            <div class="hint">CTR + Gramacho (mil Nm³)</div>
+          </div>
+        </div>
+        <div class="body">
+          <canvas id="chartBiogas" style="height: 320px"></canvas>
+        </div>
       </div>
       
       <div class="panel">
-        <div class="panelHead"><div><h2>Distribuição</h2><div class="hint">CTR vs Gramacho</div></div></div>
-        <div class="body"><canvas id="chartBioDistrib" style="height: 320px"></canvas></div>
+        <div class="panelHead">
+          <div>
+            <h2>Distribuição</h2>
+            <div class="hint">CTR vs Gramacho</div>
+          </div>
+        </div>
+        <div class="body">
+          <canvas id="chartBioDistrib" style="height: 320px"></canvas>
+        </div>
       </div>
     </div>
     
     <div class="grid">
       <div class="panel">
-        <div class="panelHead"><div><h2>Chorume</h2><div class="hint">m³</div></div></div>
-        <div class="body"><canvas id="chartChorume" style="height: 280px"></canvas></div>
+        <div class="panelHead">
+          <div>
+            <h2>Chorume</h2>
+            <div class="hint">m³</div>
+          </div>
+        </div>
+        <div class="body">
+          <canvas id="chartChorume" style="height: 280px"></canvas>
+        </div>
       </div>
       
       <div class="panel">
-        <div class="panelHead"><div><h2>Purificação</h2><div class="hint">Nm³</div></div></div>
-        <div class="body"><canvas id="chartPurif" style="height: 280px"></canvas></div>
+        <div class="panelHead">
+          <div>
+            <h2>Purificação</h2>
+            <div class="hint">Nm³</div>
+          </div>
+        </div>
+        <div class="body">
+          <canvas id="chartPurif" style="height: 280px"></canvas>
+        </div>
       </div>
       
       <div class="panel">
-        <div class="panelHead"><div><h2>RCC Gericinó</h2><div class="hint">Toneladas</div></div></div>
-        <div class="body"><canvas id="chartRCC" style="height: 280px"></canvas></div>
+        <div class="panelHead">
+          <div>
+            <h2>RCC Gericinó</h2>
+            <div class="hint">Toneladas</div>
+          </div>
+        </div>
+        <div class="body">
+          <canvas id="chartRCC" style="height: 280px"></canvas>
+        </div>
       </div>
     </div>
   </div>
   
-  <!-- TELA 4 -->
+  <!-- TELA 4 - INFRAESTRUTURA -->
   <div class="screen" id="screenInfra">
     <div class="kpis" id="kpisInfra"></div>
     
     <div class="grid2">
       <div class="panel">
-        <div class="panelHead"><div><h2>Frota Própria</h2><div class="hint">Total vs Operação</div></div></div>
-        <div class="body"><canvas id="chartFrota" style="height: 320px"></canvas></div>
+        <div class="panelHead">
+          <div>
+            <h2>Frota Própria</h2>
+            <div class="hint">Total vs Operação</div>
+          </div>
+        </div>
+        <div class="body">
+          <canvas id="chartFrota" style="height: 320px"></canvas>
+        </div>
       </div>
       
       <div class="panel">
-        <div class="panelHead"><div><h2>Diesel</h2><div class="hint">Litros</div></div></div>
-        <div class="body"><canvas id="chartDiesel" style="height: 320px"></canvas></div>
+        <div class="panelHead">
+          <div>
+            <h2>Diesel</h2>
+            <div class="hint">Litros/mês</div>
+          </div>
+        </div>
+        <div class="body">
+          <canvas id="chartDiesel" style="height: 320px"></canvas>
+        </div>
       </div>
     </div>
     
     <div class="grid">
       <div class="panel">
-        <div class="panelHead"><div><h2>Intervenções</h2><div class="hint">Quantidade</div></div></div>
-        <div class="body"><canvas id="chartIntervencoes" style="height: 280px"></canvas></div>
+        <div class="panelHead">
+          <div>
+            <h2>Intervenções</h2>
+            <div class="hint">Quantidade</div>
+          </div>
+        </div>
+        <div class="body">
+          <canvas id="chartIntervencoes" style="height: 280px"></canvas>
+        </div>
       </div>
       
       <div class="panel">
-        <div class="panelHead"><div><h2>Lubrificantes</h2><div class="hint">Litros</div></div></div>
+        <div class="panelHead">
+          <div>
+            <h2>Lubrificantes</h2>
+            <div class="hint">Litros</div>
+          </div>
+        </div>
         <div class="body" id="chartLubric"></div>
       </div>
       
       <div class="panel">
-        <div class="panelHead"><div><h2>Tipos</h2><div class="hint">Distribuição</div></div></div>
-        <div class="body"><canvas id="chartTipos" style="height: 280px"></canvas></div>
+        <div class="panelHead">
+          <div>
+            <h2>Tipos</h2>
+            <div class="hint">Distribuição</div>
+          </div>
+        </div>
+        <div class="body">
+          <canvas id="chartTipos" style="height: 280px"></canvas>
+        </div>
       </div>
     </div>
   </div>
   
+  <!-- FOOTER -->
   <div id="footer"></div>
   
 </div>
 
+<!-- DEPENDÊNCIAS -->
 <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+<!-- COMPONENTES HUB -->
 <script src="../assets/components/hub-utils.js"></script>
 <script src="../assets/components/hub-cards.js"></script>
 <script src="../assets/components/hub-charts.js"></script>
 <script src="../assets/components/hub-filters.js"></script>
 <script src="../assets/components/hub-layout.js"></script>
-<script src="dte-intelligence.js"></script>
+
+<!-- DADOS E LÓGICA -->
 <script src="data.js"></script>
 <script src="app.js"></script>
 
