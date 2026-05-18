@@ -309,7 +309,6 @@ function render() {
 // RENDER SCORE DE RISCO
 // ============================================
 
-function renderRiskScore(elementId, dados) {
   const score = calcularRiscoOperacional(dados);
   const risco = getRiscoStatus(score);
   
@@ -373,7 +372,6 @@ function renderTela1() {
   const ultimaFrota = DATA.frotaPropria.length ? DATA.frotaPropria[DATA.frotaPropria.length - 1] : { total: 0, operacao: 0 };
   
   // SCORE DE RISCO
-  renderRiskScore('riskScoreVisao', DADOS_INTELIGENCIA);
   
   // RANKINGS
   const criticos = gerarRankingCriticos(DADOS_INTELIGENCIA);
@@ -449,7 +447,6 @@ function renderTela2() {
   const ultimaHE = dadosHE.length ? dadosHE[dadosHE.length - 1].pct : 0;
   
   // SCORE DE RISCO FROTA
-  renderRiskScore('riskScoreFrota', DADOS_INTELIGENCIA);
   
   // RANKINGS FROTA
   const frotaCriticos = [
@@ -521,7 +518,6 @@ function renderTela3() {
   const taxaPurif = 72.3;
   
   // SCORE DE RISCO AMBIENTAL
-  renderRiskScore('riskScoreBio', DADOS_INTELIGENCIA);
   
   // KPIs
   HUB.cards.render("kpisBio", [
@@ -580,7 +576,6 @@ function renderTela4() {
   const taxaOp = (ultimo.operacao / ultimo.total) * 100;
   
   // SCORE DE RISCO INFRAESTRUTURA
-  renderRiskScore('riskScoreInfra', DADOS_INTELIGENCIA);
   
   // KPIs COM SEMÁFOROS
   const statusFrota = getStatus(taxaOp, 'taxaOperacional', true);
